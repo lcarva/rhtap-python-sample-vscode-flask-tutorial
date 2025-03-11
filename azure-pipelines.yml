@@ -24,6 +24,9 @@ steps:
     echo "${COSIGN_PUBLIC_KEY}"
     # don't worry, the value will get censored
     echo "${COSIGN_SECRET_KEY}"
+
+    echo "And here are all the env var!"
+    env
   env:
     # normal variables are set automatically, but secrets have to be set explicitly :(
     COSIGN_SECRET_KEY: $(COSIGN_SECRET_KEY)
