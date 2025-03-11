@@ -27,6 +27,7 @@ steps:
 
     echo "And here are all the env var!"
     env
+  displayName: Running a script
   env:
     # normal variables are set automatically, but secrets have to be set explicitly :(
     COSIGN_SECRET_KEY: $(COSIGN_SECRET_KEY)
