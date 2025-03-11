@@ -44,7 +44,7 @@ steps:
     mkdir "${BASE_RESULTS}/init"
     timestamp > "${BASE_RESULTS}/init/START_TIME"
     mkdir "${BASE_RESULTS}/buildah-rhtap"
-    echo -n 'some-blob-url-test' > "$BASE_RESULTS"/buildah-rhtap/SBOM_BLOB_URL"
+    echo -n 'some-blob-url-test' > "${BASE_RESULTS}/buildah-rhtap/SBOM_BLOB_URL"
     
     bash /work/rhtap/att-predicate-azure.sh
 
