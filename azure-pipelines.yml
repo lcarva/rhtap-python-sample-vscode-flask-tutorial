@@ -45,6 +45,8 @@ steps:
     timestamp > "${BASE_RESULTS}/init/START_TIME"
     mkdir "${BASE_RESULTS}/buildah-rhtap"
     echo -n 'some-blob-url-test' > "${BASE_RESULTS}/buildah-rhtap/SBOM_BLOB_URL"
+
+    export CI_TYPE='azure'
     
     bash /work/rhtap/att-predicate-azure.sh
 
