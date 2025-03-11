@@ -8,7 +8,7 @@ trigger:
 
 pool: resourcehub
 
-container: quay.io/redhat-appstudio/rhtap-task-runner:latest
+container: quay.io/lucarval/rhtap-task-runner:latest
 
 variables:
 - group: acmiel-variables
@@ -28,6 +28,23 @@ steps:
     echo "And here are all the env var!"
     env
   displayName: Running a script
+  env:
+    # normal variables are set automatically, but secrets have to be set explicitly :(
+    COSIGN_SECRET_KEY: $(COSIGN_SECRET_KEY)
+
+- script: |
+    #!/bin/bash
+    set -euo pipefail
+
+    export BASE_RESULTS="$(mktemp -d)"
+    mkdir "${BASE_RESULTS}/init"
+    timestamp > "${BASE_RESULTS}/init/START_TIME"
+    mkdir "${BASE_RESULTS}/buildah-rhtap"
+    echo -n 'some-blob-url-test' > "$BASE_RESULTS"/buildah-rhtap/SBOM_BLOB_URL"
+    
+    bash /work/rhtap/att-predicate-azure.sh
+
+  displayName: Generate provenance
   env:
     # normal variables are set automatically, but secrets have to be set explicitly :(
     COSIGN_SECRET_KEY: $(COSIGN_SECRET_KEY)
